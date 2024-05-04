@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yellow-app
+  namespace: color-app
+  labels:
+    app: yellow-app
+spec:
+  selector:
+    matchLabels:
+      app: yellow-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: yellow-app
+    spec:
+      containers:
+      - name: yellow-container
+        image: deepthiarmour/yellow
+        ports:
+            - containerPort: 80
+        resources:
+          limits:
+            memory: "100Mi"
+            cpu: "200m"
